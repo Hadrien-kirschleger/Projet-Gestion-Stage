@@ -1,12 +1,11 @@
 <?php
 
+include_once "../assets/connexion.php";
+
 function envoi(){
 
-include "connexion.php";
-
-
-    var_dump($_GET['prenom']);
-
+    global $cnx; // On récupère la connexion à la base de données du include
+    
     if(isset($_GET['prenom']) && isset($_GET['nom']) && isset($_GET['spe'])){
         
         $prenom = $_GET['prenom'];
@@ -25,7 +24,7 @@ include "connexion.php";
 
         $txtReq = "INSERT INTO Eleves (Nom, Prenom, Mail, Telephone, Specialite) VALUES (upper(:nom), :prenom, :mail, :tel, :spe)";
 
-        $req = $cnx->prepare($txtReq);
+        $req =  $cnx->prepare($txtReq);
 
         $req->bindParam(":prenom",$prenom);
         $req->bindParam(":nom",$nom);  
@@ -43,3 +42,6 @@ include "connexion.php";
 }
 
 envoi();
+
+
+global $cnx;

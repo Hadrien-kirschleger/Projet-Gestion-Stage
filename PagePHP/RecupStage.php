@@ -1,7 +1,7 @@
 <?php
-include "connexion.php";
+include "../assets/connexion.php";
 
-$textReq = "Select * from Stage";
+$textReq = "Select * from Stage where Id_Eleves =".$_GET["Id"];
 
 
 $req = $cnx->prepare($textReq);
