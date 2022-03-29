@@ -26,7 +26,7 @@ function envoi(){
         var_dump($TelResponsable);
 
        
-        $txtReq = "INSERT INTO Stages (Date_Debut, Nom_Entreprise, Description, Mail_Responsable, Nom_Responsable, Telephone_Responsable, Date_Fin) VALUES (:DateDebut, :NomEntreprise, :apercu, :MailResponsable, :NomResponsable, :TelResponsable, :DateFin) SELECT NULL FROM Stages inner join Eleves on Stages.Id_Eleves = Eleves.Id_Eleves WHERE Eleves.Id_Eleve = :IdEleve";
+        $txtReq = "INSERT INTO Stage (Date_Debut, NomEntreprise, Description, MailResponsable, NomResponsable, TelephoneResponsable, Id_Eleves, Date_Fin) VALUES (:DateDebut, :NomEntreprise, :apercu, :MailResponsable, :NomResponsable, :TelResponsable, :IdEleve, :DateFin)";
         
 
         $req = $cnx->prepare($txtReq);
