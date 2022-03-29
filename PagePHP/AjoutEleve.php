@@ -34,6 +34,9 @@ function envoi(){
 
         $req->execute();
 
+        header("location:../PageWebHTML/eleveCree.html");
+        exit();
+
 
     }
 
@@ -42,6 +45,3 @@ function envoi(){
 }
 
 envoi();
-
-
-global $cnx;

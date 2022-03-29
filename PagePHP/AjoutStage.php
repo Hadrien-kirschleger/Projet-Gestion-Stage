@@ -45,7 +45,8 @@ function envoi(){
 
         $req->execute();
 
-        
+        header("location:../PageWebHTML/StageCree.html");
+        exit();
 
     }    }
     

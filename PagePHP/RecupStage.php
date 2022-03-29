@@ -1,13 +1,24 @@
 <?php
 include "../assets/connexion.php";
 
-$textReq = "Select * from Stage where Id_Eleves =".$_GET["Id"];
+if(isset($_GET['Id'])){
+
+    $IdEleve = $_GET['Id'];    
+    $req = $bdd->prepare("Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves where Id_Eleves = :Id");
+    
+}
+else{
+
+    $textReq = "Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves order by Id_Eleves";
+
+}
 
 
 $req = $cnx->prepare($textReq);
+$req->bindParam(":IdEleve",$IdEleve);
 $req->execute();
 $tab = $req->fetchAll();
-//var_dump($tab);
+
 
 ?>
 
@@ -34,37 +45,37 @@ $tab = $req->fetchAll();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Identifiant stage</th>
-                            <th scope="col">Année début stage</th>
-                            <th scope="col">Année fin stage</th>
+                            <th scope="col">Eleves</th>
+                            <th scope="col">Début stage</th>
+                            <th scope="col">Fin stage</th>
                             <th scope="col">Nom entreprise</th>
-                            <th scope="col">Description stage</th>
                             <th scope="col">Mail responsable</th>
                             <th scope="col">Nom responsable</th>
-                            <th scope="col">Telephone responsable</th>
-                            <th scope="col">Identifiant élève</th>
+                            <th scope="col">Telephone responsable</th>                            
                         </tr>
                     </thead>
                     <tbody>
+
                 <?php
                     foreach ($tab as $pers)
                     {
                         echo "<tr>";
-                        echo "<td>".$pers['Id_']."</td>";
+                        echo "<td>".$pers['Prenom']." ".$pers['Nom']."</td>";
                         echo "<td>".$pers['Date_Debut']."</td>";
                         echo "<td>".$pers['Date_Fin']."</td>";
                         echo "<td>".$pers['NomEntreprise']."</td>";
-                        echo "<td>".$pers['Description']."</td>";
                         echo "<td>".$pers['MailResponsable']."</td>";
                         echo "<td>".$pers['NomResponsable']."</td>";
-                        echo "<td>".$pers['TelephoneResponsable']."</td>";
-                        echo "<td>".$pers['Id_Eleves']."</td>";
+                        echo "<td>".$pers['TelephoneResponsable']."</td>";                       
                         echo "</tr>";
                     }
                 ?>
                     </tbody>
                 </table>
         </div> 
+        <div>
+
+        </div>
 
 
 

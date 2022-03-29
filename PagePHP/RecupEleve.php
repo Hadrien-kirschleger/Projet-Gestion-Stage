@@ -82,7 +82,6 @@ if(isset($valider) && !empty(trim($keywords)))
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Identifiant</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prenom</th>
                         <th scope="col">Mail</th>
@@ -94,7 +93,6 @@ if(isset($valider) && !empty(trim($keywords)))
                     <?php
                     foreach ($tab as $pers) {
                         echo "<tr>";
-                        echo "<td>" . $pers['Id_Eleves'] . "</td>";
                         echo "<td>" . $pers['Nom'] . "</td>";
                         echo "<td>" . $pers['Prenom'] . "</td>";
                         echo "<td>" . $pers['Mail'] . "</td>";
