@@ -3,8 +3,8 @@ include "../assets/connexion.php";
 
 if(isset($_GET['Id'])){
 
-    $IdEleve = $_GET['Id'];    
-    $req = $bdd->prepare("Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves where Id_Eleves = :Id");
+   
+    $textReq = ("Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves where Stage.Id_Eleves = ".$_GET['Id']);
     
 }
 else{
@@ -15,7 +15,6 @@ else{
 
 
 $req = $cnx->prepare($textReq);
-$req->bindParam(":IdEleve",$IdEleve);
 $req->execute();
 $tab = $req->fetchAll();
 

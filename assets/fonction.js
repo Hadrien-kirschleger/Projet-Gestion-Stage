@@ -16,7 +16,7 @@ function ListeDeroulante(data){
 
     data.forEach(element => {
        
-        codeHtml+= "<option value='"+element.Id_Eleves+"'>"+element.Prenom+" "+element.Nom+"</option>";
+        codeHtml+= "<option value='"+element.Id_Eleves+"'>"+element.Prenom + " " + element.Nom + " / " + element.Specialite +"</option>";
         
     });
 

@@ -13,7 +13,7 @@ L'ajout ce fait via un formulaire, il y est demandé le nom, le prénom, la mail
 
 ### Ajout de stages
 
-L'ajout de stage ce fait aussi via un formulaire, il faut choisir l'élève a qui correspond le stage avec une liste déroulante puis il est demandé la date de début et la date de fin de stage, le nom de l'entreprise, le nom, le numéro de téléphone et le mail du responsable ( maitre de stage ).
+L'ajout de stage ce fait aussi via un formulaire, il faut choisir l'élève a qui correspond le stage avec une liste déroulante puis il est demandé la date de début et la date de fin de stage, le nom de l'entreprise, le nom, le numéro de téléphone, le mail du responsable, les même informations pour le tuteur de l'élève ainsi que l'appréciation golbale et une note sur 10 pour le stage.
 
 De plus nous avons ajouté un moyen de visualiser les stages pour faciliter les recherches des élèves des années suivantes.
 

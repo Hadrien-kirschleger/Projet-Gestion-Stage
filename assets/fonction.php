@@ -11,7 +11,7 @@ function ListerEleve(){
 
     global $cnx;
 
-    $txtReq = "SELECT Nom, Prenom, Id_Eleves FROM Eleves order by Id_Eleves";
+    $txtReq = "SELECT Nom, Prenom, Id_Eleves, Specialite FROM Eleves order by Id_Eleves";
 
     $req = $cnx->prepare($txtReq);
 
