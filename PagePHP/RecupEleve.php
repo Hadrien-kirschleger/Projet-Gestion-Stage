@@ -1,6 +1,6 @@
 <?php
 include "../assets/connexion.php";
-$textReq = "Select * from Eleves";
+$textReq = "Select * from eleve";
 $req = $cnx->prepare($textReq);
 $req->execute();
 $tab = $req->fetchAll();
@@ -18,7 +18,7 @@ if(isset($valider) && !empty(trim($keywords)))
     }
 
 
-    $res = $cnx->prepare("select Id_Eleves,Nom from Eleves where ".implode(" or ", $kw));
+    $res = $cnx->prepare("select Id_eleve,Nom from eleve where ".implode(" or ", $kw));
     $res->setFetchMode(PDO::FETCH_ASSOC);
     $res->execute();
 
@@ -26,7 +26,7 @@ if(isset($valider) && !empty(trim($keywords)))
 
     $afficher="oui";
 
-    var_dump($tabBis);
+    
 }
 
 
@@ -71,7 +71,7 @@ if(isset($valider) && !empty(trim($keywords)))
                     <ol>
                         <?php for($i=0;$i<count($tabBis);$i++){ ?>
 
-                        <a href ="RecupStage.php?Id=<?php echo $tabBis[$i]["Id_Eleves"];?>" > <li><?php echo$tabBis[$i]["Nom"] ?></li></a>
+                        <a href ="RecupStage.php?Id=<?php echo $tabBis[$i]["Id_eleve"];?>" > <li><?php echo$tabBis[$i]["Nom"] ?></li></a>
                         <?php } ?>
                     </ol>
             </div>

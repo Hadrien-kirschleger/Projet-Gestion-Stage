@@ -4,12 +4,12 @@ include "../assets/connexion.php";
 if(isset($_GET['Id'])){
 
    
-    $textReq = ("Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves where Stage.Id_Eleves = ".$_GET['Id']);
+    $textReq = ("Select stage.idStage, stage.Date_Debut, entreprise.NomEntreprise, entreprise.Activite, entreprise.Ville, stage.Date_Fin, stage.MailResponsable, stage.Description, stage.TelephoneResponsable, stage.NomResponsable, stage.Id_eleve, eleve.Nom, eleve.Prenom, stage.NomTuteur, stage.MailTuteur, stage.TelephoneTuteur, stage.Appreciation, stage.Note from stage INNER JOIN eleve on stage.Id_eleve = eleve.Id_eleve INNER JOIN entreprise on stage.Id_entreprise = entreprise.Id_entreprise  where stage.Id_eleve = ".$_GET['Id']);
     
 }
 else{
 
-    $textReq = "Select Stage.Date_Debut, Stage.NomEntreprise, Stage.Date_Fin, Stage.MailResponsable, Stage.Description, Stage.TelephoneResponsable, Stage.NomResponsable, Stage.Id_Eleves, Eleves.Nom, Eleves.Prenom from Stage INNER JOIN Eleves on Stage.Id_Eleves = Eleves.Id_Eleves order by Id_Eleves";
+    $textReq = "Select stage.idStage, stage.Date_Debut, entreprise.NomEntreprise, entreprise.Activite, entreprise.Ville, stage.Date_Fin, stage.MailResponsable, stage.Description, stage.TelephoneResponsable, stage.NomResponsable, stage.Id_eleve, eleve.Nom, eleve.Prenom, stage.NomTuteur, stage.MailTuteur, stage.TelephoneTuteur, stage.Appreciation, stage.Note from stage INNER JOIN eleve on stage.Id_eleve = eleve.Id_eleve INNER JOIN entreprise on stage.Id_entreprise = entreprise.Id_entreprise order by Id_eleve";
 
 }
 
@@ -38,19 +38,27 @@ $tab = $req->fetchAll();
     <br>
     <hr>
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-8">
+        
+        <div class="col-9">
                 <h2> Tableau des Stages</h2>
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Identifiant Stage</th>
                             <th scope="col">Eleves</th>
                             <th scope="col">Début stage</th>
                             <th scope="col">Fin stage</th>
                             <th scope="col">Nom entreprise</th>
                             <th scope="col">Mail responsable</th>
                             <th scope="col">Nom responsable</th>
-                            <th scope="col">Telephone responsable</th>                            
+                            <th scope="col">Telephone responsable</th> 
+                            <th scope="col">Mail tuteur</th> 
+                            <th scope="col">Nom tuteur</th> 
+                            <th scope="col">Telephone tuteur</th> 
+                            <th scope="col">Appreciation</th> 
+                            <th scope="col">Note</th> 
+                            <th scope="col">Description</th> 
+
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +67,21 @@ $tab = $req->fetchAll();
                     foreach ($tab as $pers)
                     {
                         echo "<tr>";
+                        echo "<td>".$pers['idStage']."</td>";   
                         echo "<td>".$pers['Prenom']." ".$pers['Nom']."</td>";
                         echo "<td>".$pers['Date_Debut']."</td>";
                         echo "<td>".$pers['Date_Fin']."</td>";
                         echo "<td>".$pers['NomEntreprise']."</td>";
                         echo "<td>".$pers['MailResponsable']."</td>";
                         echo "<td>".$pers['NomResponsable']."</td>";
-                        echo "<td>".$pers['TelephoneResponsable']."</td>";                       
+                        echo "<td>".$pers['TelephoneResponsable']."</td>";  
+                        echo "<td>".$pers['MailTuteur']."</td>";  
+                        echo "<td>".$pers['NomTuteur']."</td>";  
+                        echo "<td>".$pers['TelephoneTuteur']."</td>"; 
+                        echo "<td>".$pers['Appreciation']."</td>"; 
+                        echo "<td>".$pers['Note']."</td>";  
+                        echo "<td>".$pers['Description']."</td>";
+
                         echo "</tr>";
                     }
                 ?>
@@ -76,6 +92,8 @@ $tab = $req->fetchAll();
 
         </div>
 
+
+        <a href="RecupEleve.php">Voir tableau des élèves</a>
 
 
 </body>
