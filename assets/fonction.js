@@ -20,7 +20,7 @@ function ListeDeroulante(data){
 
     data.forEach(element => {
        
-        codeHtml+= "<option value='"+element.Id_Eleves+"'>"+element.Prenom + " " + element.Nom + " / " + element.Specialite +"</option>";
+        codeHtml+= "<option value='"+element.Id_eleve+"'>"+element.Prenom + " " + element.Nom + " / " + element.Specialite +"</option>";
         
     });
 
@@ -39,7 +39,7 @@ function ListeEntreprise(data){
     
         data.forEach(element => {
         
-            codeHtml+= "<option value='"+element.Id_Entreprise+"'>"+element.NomEntreprise +"</option>";
+            codeHtml+= "<option value='"+element.Id_entreprise+"'>"+element.NomEntreprise +"</option>";
             idMax = element.Id_Entreprise;
         });
 

@@ -15,57 +15,51 @@ function envoi(){
         $MailResponsable = $_GET['mailR'];        
         $TelResponsable = $_GET['telR'];  
         if($TelResponsable == ""){
-            $TelResponsable = "NULL";
+            $TelResponsable = null;
         }
         $NomTuteur = $_GET['nomT'];
         $MailTuteur = $_GET['mailT'];
         $telTuteur = $_GET['telT'];
         if($telTuteur == ""){
-            $telTuteur = "NULL";
+            $telTuteur = null;
         }
         $apercu = $_GET['apercu'];
         if($apercu == ""){
-            $apercu = "NULL";
+            $apercu = null;
         }
         $Appreciation = $_GET['appreciation'];
         $Note = $_GET['note'];
         $NomEntreprise = $_GET['nomE'];
         if($NomEntreprise == ""){
-            $NomEntreprise = "NULL";
+            $NomEntreprise = null;
         }
         $idEntreprise = $_GET['ListeEntreprise'];
-        if($idEntreprise == ""){
-            $idEntreprise = "NULL";
-        }
         $Ville = $_GET['ville'];
         if($Ville == ""){
-            $Ville = "NULL";
+            $Ville = null;
         }
         $Activite = $_GET['activite'];
         if($Activite == ""){
-            $Activite = "NULL";
+            $Activite = null;
         }
 
-        var_dump($TelResponsable);
+       var_dump($IdEleve);
 
-        if($idEntreprise == "NULL"){
+        if($Ville != null){
 
-            $txtReq2 = "INSERT INTO Entreprise (NomEntreprise, Activite, Ville) VALUES (:NomEntreprise, :Activite, :Ville)"; 
-            $idEntreprise = $_GET["ListeEntreprise"];
+            $txtReq2 = "INSERT INTO entreprise (NomEntreprise, Activite, Ville) VALUES (:NomEntreprise, :Activite, :Ville)";
+            $req2 = $cnx->prepare($txtReq2); 
+            $req2->bindParam(":NomEntreprise",$NomEntreprise);
+            $req2->bindParam(":Activite",$Activite);
+            $req2->bindParam(":Ville",$Ville);    
+            $req2->execute();
+            $idEntreprise ++;
         }
 
-        $txtReq = "INSERT INTO Stage (Date_Debut, Date_Fin, MailResponsable, NomResponsable, TelephoneResponsable, MailTuteur, NomTuteur, TelephoneTuteur, Description, Appreciation, Note, Id_entreprise, Id_Eleves) VALUES (:DateDebut, :DateFin, :MailResponsable, :NomResponsable, :TelephoneResponsable, :MailTuteur, :NomTuteur, :TelephoneTuteur, :apercu, :Appreciation, :Note, :Id_entreprise, :Id_Eleves)";
+        $txtReq = "INSERT INTO stage (Date_Debut, Date_Fin, MailResponsable, NomResponsable, TelephoneResponsable, MailTuteur, NomTuteur, TelephoneTuteur, Description, Appreciation, Note, Id_entreprise, Id_eleve) VALUES (:DateDebut, :DateFin, :MailResponsable, :NomResponsable, :TelResponsable, :MailTuteur, :NomTuteur, :TelTuteur, :apercu, :Appreciation, :Note, :Id_entreprise, :IdEleve)";
 
-       
-             
-       
-        
-        $req2 = $cnx->prepare($txtReq2);
+       var_dump($txtReq);
         $req = $cnx->prepare($txtReq);
-       
-
-        var_dump($txtReq);
-
         $req->bindParam(":IdEleve",$IdEleve);
         $req->bindParam(":DateDebut",$DateDebut);
         $req->bindParam(":DateFin",$DateFin);
@@ -79,14 +73,6 @@ function envoi(){
         $req->bindParam(":Appreciation",$Appreciation);
         $req->bindParam(":Note",$Note);
         $req->bindParam(":Id_entreprise",$idEntreprise);
-
-
-        $req2->bindParam(":NomEntreprise",$NomEntreprise);
-        $req2->bindParam(":Activite",$Activite);
-        $req2->bindParam(":Ville",$Ville);
-
-
-        $req2->execute();
         $req->execute();
         
 

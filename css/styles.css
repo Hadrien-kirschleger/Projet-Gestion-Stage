@@ -1,0 +1,22 @@
+.main{
+    background-image: url(./img/back.png); ;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.d2{
+    display: none;
+}
+
+.centre{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+
+}
+

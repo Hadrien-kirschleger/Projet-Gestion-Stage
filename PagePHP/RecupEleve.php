@@ -1,5 +1,6 @@
 <?php
 include "../assets/connexion.php";
+
 $textReq = "Select * from eleve";
 $req = $cnx->prepare($textReq);
 $req->execute();
@@ -40,11 +41,13 @@ if(isset($valider) && !empty(trim($keywords)))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link href="../css/styles.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
-<body class=container>
-    <h1 class="text-danger">Présentation des élèves</h1>
+<body class="main">
+    <br>
+    <h1 class="centre">Tableau des élèves</h1>
 
     <br>
     <br>
@@ -66,7 +69,7 @@ if(isset($valider) && !empty(trim($keywords)))
             <?php if(@$afficher=="oui") { ?>
 
 
-            <div id="resultats">
+            <div class="cbo" id="resultats">
                 <div id="nbr"><?=count($tabBis)." ".(count($tabBis)>1?"résultats trouvés":"résultat trouvé") ?> </div>
                     <ol>
                         <?php for($i=0;$i<count($tabBis);$i++){ ?>
@@ -105,7 +108,11 @@ if(isset($valider) && !empty(trim($keywords)))
             </table>
         </div>
 
+        <div class="col-3">
         <a href="RecupStage.php">Voir tableau des stages</a>
+        <br>
+        <a href="RecupEntreprise.php">Voir tableau des entreprises</a>
+        </div>
 
 
 </body>
